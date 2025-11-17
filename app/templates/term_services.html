@@ -1,0 +1,931 @@
+{% extends "base.html" %}
+
+{% block title %}Terms & Services - Room Rental Website {% endblock %}
+
+{% block content %}
+<div class="terms-container">
+    
+    <section class="terms-header">
+        <div class="container">
+            <h1>Terms & Services</h1>
+            <div class="header-divider"></div>
+            <p class="header-subtitle">Please read these terms carefully before using our platform</p>
+        </div>
+    </section>
+
+    <section class="terms-content">
+        <div class="container">
+            <div class="content-wrapper">
+                
+                <div class="terms-section">
+                    <div class="section-intro">
+                        <div class="intro-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="intro-text">
+                            <h2>Welcome to Room Rental Website</h2>
+                            <p>By using our platform, you agree to follow these terms and conditions. Please read them carefully to understand your rights and responsibilities as a user.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acceptance of Terms -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">1</div>
+                        <h2>Acceptance of Terms</h2>
+                    </div>
+                    <div class="section-body">
+                        <p>By accessing or using our website, you agree to comply with these Terms & Services and any future updates. If you do not agree, please do not use our platform.</p>
+                    </div>
+                </div>
+
+                <!-- User Accounts -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">2</div>
+                        <h2>User Accounts</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="requirements-list">
+                            <div class="requirement-item">
+                                <i class="fas fa-user-check"></i>
+                                <span>Users must provide accurate and up-to-date information when registering</span>
+                            </div>
+                            <div class="requirement-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Account credentials are private. Users are responsible for maintaining the confidentiality of their login information</span>
+                            </div>
+                            <div class="requirement-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>House owners and room seekers are responsible for all actions taken under their accounts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listings and Content -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">3</div>
+                        <h2>Listings and Content</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="content-guidelines">
+                            <div class="guideline-item">
+                                <div class="guideline-icon positive">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="guideline-content">
+                                    <h4>Required</h4>
+                                    <p>House owners must provide <strong>accurate details</strong> about rooms, including location, amenities, pricing, and photos</p>
+                                </div>
+                            </div>
+                            <div class="guideline-item">
+                                <div class="guideline-icon negative">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                                <div class="guideline-content">
+                                    <h4>Prohibited</h4>
+                                    <p>Users must not post fraudulent, misleading, or illegal content and picture</p>
+                                </div>
+                            </div>
+                            <div class="guideline-notice">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>Room Rental Website reserves the right to remove any content that violates our guidelines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking and Communication -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">4</div>
+                        <h2>Booking and Communication</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="booking-info">
+                            <div class="info-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>Direct Communication</h4>
+                                <p>Room seekers and owners Will communicate and transact directly on the platform</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <h4>Our Role</h4>
+                                <p>Room Rental Website  is a <strong>facilitator</strong> and does not take responsibility for the outcome of transactions, agreements, or disputes between users</p>
+                            </div>
+                            <div class="info-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>User Conduct</h4>
+                                <p>Users are expected to maintain honest and respectful communication</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment and Fees -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">5</div>
+                        <h2>Payment and Fees</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="payment-info">
+                            <div class="payment-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <div class="payment-text">
+                                    <h4>Direct Payments</h4>
+                                    <p>Any payment agreements are made directly between house owners and room seekers</p>
+                                </div>
+                            </div>
+                            <div class="payment-item">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <div class="payment-text">
+                                    <h4>Platform Fees</h4>
+                                    <p>Room Rental website does not handle payments or charge fees for bookings (unless otherwise notified for premium services)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Data Use -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">6</div>
+                        <h2>Privacy & Data Use</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="privacy-notice">
+                            <div class="privacy-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="privacy-text">
+                                <p>We respect your privacy. Please review our <strong><a href="{{ url_for('privacy_policy') }}">Privacy & Policy</a></strong> to understand how we collect and use your information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prohibited Actions -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">7</div>
+                        <h2>Prohibited Actions</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="prohibited-list">
+                            <div class="prohibited-item">
+                                <i class="fas fa-ban"></i>
+                                <span>Post false or misleading information</span>
+                            </div>
+                            <div class="prohibited-item">
+                                <i class="fas fa-gavel"></i>
+                                <span>Violate laws or regulations</span>
+                            </div>
+                            <div class="prohibited-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Harass or threaten other users</span>
+                            </div>
+                            <div class="prohibited-item">
+                                <i class="fas fa-robot"></i>
+                                <span>Use automated systems or bots to scrape data</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limitation of Liability -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">8</div>
+                        <h2>Limitation of Liability</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="liability-warning">
+                            <div class="warning-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="warning-content">
+                                <h4>Important Notice</h4>
+                                <p>Room Rental Website  is a platform to connect users and does <strong>not guarantee the quality, safety, or legality</strong> of listed rooms.</p>
+                                <p>Users agree that Room Rental Website is <strong>not liable for any disputes, damages, or losses</strong> arising from the use of our platform.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Termination -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">9</div>
+                        <h2>Termination</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="termination-info">
+                            <div class="termination-item">
+                                <div class="termination-icon">
+                                    <i class="fas fa-user-slash"></i>
+                                </div>
+                                <div class="termination-text">
+                                    <h4>Platform Rights</h4>
+                                    <p>We reserve the right to suspend or terminate accounts that violate our terms or policies</p>
+                                </div>
+                            </div>
+                            <div class="termination-item">
+                                <div class="termination-icon">
+                                    <i class="fas fa-door-open"></i>
+                                </div>
+                                <div class="termination-text">
+                                    <h4>User Rights</h4>
+                                    <p>Users can also close their accounts at any time</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Changes to Terms -->
+                <div class="terms-section">
+                    <div class="section-header">
+                        <div class="section-number">10</div>
+                        <h2>Changes to Terms</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="changes-notice">
+                            <i class="fas fa-sync-alt"></i>
+                            <p>We may update these Terms & Services periodically. All changes will be posted on this page. Continued use of the platform constitutes acceptance of these changes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Us -->
+                <div class="terms-section contact-section">
+                    <div class="section-header">
+                        <div class="section-number">11</div>
+                        <h2>Contact Us</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="contact-content">
+                            <div class="contact-message">
+                                <i class="fas fa-headset"></i>
+                                <p>If you have questions regarding these terms, contact us at:</p>
+                            </div>
+                            <div class="contact-email">
+                                <a href="mailto:yagyarawal771@gmail.com">
+                                    <i class="fas fa-envelope"></i>
+                                    yagyarawal771@gmail.com
+                                </a>
+                            </div>
+                            <p class="final-message">We are committed to providing a safe and reliable platform for all users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    /* Terms & Services Container */
+    .terms-container {
+        min-height: calc(100vh - 160px);
+        background-color: #f8fafc;
+    }
+
+    /* Header Section */
+    .terms-header {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+        text-align: center;
+    }
+
+    .terms-header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .header-divider {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        margin: 0 auto 1.5rem;
+        border-radius: 2px;
+    }
+
+    .header-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Main Content */
+    .terms-content {
+        padding: 4rem 0;
+    }
+
+    .content-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Terms Sections */
+    .terms-section {
+        background: white;
+        padding: 2.5rem;
+        margin-bottom: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e2e8f0;
+        transition: transform 0.3s ease;
+    }
+
+    .terms-section:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Introduction Section */
+    .section-intro {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .intro-icon {
+        font-size: 3rem;
+        color: #667eea;
+        flex-shrink: 0;
+    }
+
+    .intro-text h2 {
+        font-size: 2rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .intro-text p {
+        font-size: 1.2rem;
+        color: #4a5568;
+        line-height: 1.7;
+        margin-bottom: 0;
+    }
+
+    /* Section Header */
+    .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #f1f5f9;
+    }
+
+    .section-number {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        margin-right: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+        color: #2d3748;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    /* Section Body */
+    .section-body p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #4a5568;
+        margin-bottom: 1rem;
+    }
+
+    /* Requirements List */
+    .requirements-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .requirement-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+    }
+
+    .requirement-item i {
+        color: #667eea;
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+    }
+
+    .requirement-item span {
+        font-size: 1.1rem;
+        color: #4a5568;
+        line-height: 1.6;
+    }
+
+    /* Content Guidelines */
+    .content-guidelines {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .guideline-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .guideline-item.positive {
+        background: #f0fff4;
+        border-left: 4px solid #48bb78;
+    }
+
+    .guideline-item.negative {
+        background: #fed7d7;
+        border-left: 4px solid #e53e3e;
+    }
+
+    .guideline-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .guideline-icon.positive {
+        background: #48bb78;
+        color: white;
+    }
+
+    .guideline-icon.negative {
+        background: #e53e3e;
+        color: white;
+    }
+
+    .guideline-content h4 {
+        font-size: 1.2rem;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .guideline-content p {
+        margin-bottom: 0;
+        color: #4a5568;
+    }
+
+    .guideline-notice {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #feebc8;
+        border-radius: 8px;
+        border-left: 4px solid #dd6b20;
+    }
+
+    .guideline-notice i {
+        color: #dd6b20;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .guideline-notice p {
+        margin-bottom: 0;
+        color: #744210;
+    }
+
+    /* Booking Info */
+    .booking-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .info-card {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        color: #667eea;
+        margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+        font-size: 1.2rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .info-card p {
+        font-size: 1rem;
+        margin-bottom: 0;
+        color: #718096;
+    }
+
+    /* Payment Info */
+    .payment-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .payment-item {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+    }
+
+    .payment-item i {
+        font-size: 2rem;
+        color: #667eea;
+        flex-shrink: 0;
+    }
+
+    .payment-text h4 {
+        font-size: 1.2rem;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .payment-text p {
+        margin-bottom: 0;
+        color: #4a5568;
+    }
+
+    /* Privacy Notice */
+    .privacy-notice {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        background: #ebf8ff;
+        border-radius: 8px;
+        border-left: 4px solid #4299e1;
+    }
+
+    .privacy-icon {
+        font-size: 2.5rem;
+        color: #4299e1;
+        flex-shrink: 0;
+    }
+
+    .privacy-text p {
+        margin-bottom: 0;
+        color: #4a5568;
+    }
+
+    .privacy-text a {
+        color: #4299e1;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .privacy-text a:hover {
+        text-decoration: underline;
+    }
+
+    /* Prohibited List */
+    .prohibited-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .prohibited-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #fed7d7;
+        border-radius: 8px;
+        border-left: 4px solid #e53e3e;
+    }
+
+    .prohibited-item i {
+        color: #e53e3e;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .prohibited-item span {
+        font-size: 1.1rem;
+        color: #744210;
+        font-weight: 500;
+    }
+
+    /* Liability Warning */
+    .liability-warning {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 2rem;
+        background: #fff5f5;
+        border-radius: 8px;
+        border: 2px solid #fed7d7;
+    }
+
+    .warning-icon {
+        font-size: 2.5rem;
+        color: #e53e3e;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .warning-content h4 {
+        font-size: 1.3rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .warning-content p {
+        margin-bottom: 1rem;
+        color: #4a5568;
+    }
+
+    .warning-content p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Termination Info */
+    .termination-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .termination-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: #f8fafc;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+    }
+
+    .termination-icon {
+        font-size: 1.8rem;
+        color: #667eea;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .termination-text h4 {
+        font-size: 1.2rem;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .termination-text p {
+        margin-bottom: 0;
+        color: #4a5568;
+    }
+
+    /* Changes Notice */
+    .changes-notice {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        background: #feebc8;
+        border-radius: 8px;
+        border-left: 4px solid #dd6b20;
+    }
+
+    .changes-notice i {
+        font-size: 2rem;
+        color: #dd6b20;
+        flex-shrink: 0;
+    }
+
+    .changes-notice p {
+        margin-bottom: 0;
+        color: #744210;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+    }
+
+    .contact-section .section-header {
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-section .section-number {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-section .section-header h2 {
+        color: white;
+    }
+
+    .contact-section p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-message {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-message i {
+        font-size: 2rem;
+    }
+
+    .contact-email {
+        margin: 2rem 0;
+    }
+
+    .contact-email a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-email a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .final-message {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .terms-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .terms-content {
+            padding: 2rem 0;
+        }
+
+        .terms-section {
+            padding: 1.5rem;
+        }
+
+        .section-intro {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .section-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .section-number {
+            margin-right: 0;
+        }
+
+        .booking-info,
+        .termination-info {
+            grid-template-columns: 1fr;
+        }
+
+        .prohibited-list {
+            grid-template-columns: 1fr;
+        }
+
+        .liability-warning,
+        .privacy-notice,
+        .changes-notice {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .payment-item {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .terms-header {
+            padding: 3rem 0 1.5rem;
+        }
+
+        .terms-header h1 {
+            font-size: 2rem;
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+        }
+
+        .intro-text h2 {
+            font-size: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+        }
+
+        .section-body p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+    // Simple animation for terms sections on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const termsSections = document.querySelectorAll('.terms-section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        termsSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+    });
+</script>
+{% endblock %}

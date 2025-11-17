@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Add Room - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="container">
+        <h1>List Your Room</h1>
+        <p class="subtitle">Fill in the details below to list your room</p>
+
+        <form method="POST" action="" enctype="multipart/form-data" class="room-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.title.label }}
+                    {{ form.title(class="form-control", placeholder="e.g., Special Single Room in Downtown") }}
+                    {% if form.title.errors %}
+                        <span class="error">{{ form.title.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.location.label }}
+                    {{ form.location(class="form-control", placeholder="e.g., Kathmandu, Dhangadi") }}
+                    {% if form.location.errors %}
+                        <span class="error">{{ form.location.errors[0] }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.rent_price.label }}
+                    {{ form.rent_price(class="form-control", placeholder="Rs 4000") }}
+                    {% if form.rent_price.errors %}
+                        <span class="error">{{ form.rent_price.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.room_type.label }}
+                    {{ form.room_type(class="form-control") }}
+                    {% if form.room_type.errors %}
+                        <span class="error">{{ form.room_type.errors[0] }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.description.label }}
+                {{ form.description(class="form-control", rows="5", placeholder="Describe your room, amenities, nearby facilities...") }}
+                {% if form.description.errors %}
+                    <span class="error">{{ form.description.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.image.label }}
+                {{ form.image(class="form-control-file") }}
+                {% if form.image.errors %}
+                    <span class="error">{{ form.image.errors[0] }}</span>
+                {% endif %}
+                <small class="form-text">Upload a clear image of your room (JPG, PNG, GIF)</small>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.available_from.label }}
+                    {{ form.available_from(class="form-control", type="date") }}
+                    {% if form.available_from.errors %}
+                        <span class="error">{{ form.available_from.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.available_to.label }}
+                    {{ form.available_to(class="form-control", type="date") }}
+                    {% if form.available_to.errors %}
+                        <span class="error">{{ form.available_to.errors[0] }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-block">Submit Listing</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

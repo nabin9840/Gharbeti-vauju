@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Room - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Room</h2>
+    
+  
+    {% if room.image_filename %}
+    <div class="current-image mb-3">
+        <p><strong>Current Image:</strong></p>
+        <img src="{{ url_for('static', filename='images/' + room.image_filename) }}" 
+             alt="{{ room.title }}" class="img-thumbnail" style="max-height: 200px;">
+    </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}  
+        
+        <div class="form-group">
+            {{ form.title.label(class="form-control-label") }}
+            {{ form.title(class="form-control") }}
+            {% if form.title.errors %}
+                <div class="text-danger">
+                    {% for error in form.title.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.location.label(class="form-control-label") }}
+            {{ form.location(class="form-control") }}
+            {% if form.location.errors %}
+                <div class="text-danger">
+                    {% for error in form.location.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.rent_price.label(class="form-control-label") }}
+            {{ form.rent_price(class="form-control") }}
+            {% if form.rent_price.errors %}
+                <div class="text-danger">
+                    {% for error in form.rent_price.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.room_type.label(class="form-control-label") }}
+            {{ form.room_type(class="form-control") }}
+            {% if form.room_type.errors %}
+                <div class="text-danger">
+                    {% for error in form.room_type.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.description.label(class="form-control-label") }}
+            {{ form.description(class="form-control", rows="3") }}
+            {% if form.description.errors %}
+                <div class="text-danger">
+                    {% for error in form.description.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.available_from.label(class="form-control-label") }}
+            {{ form.available_from(class="form-control", type="date") }}
+            {% if form.available_from.errors %}
+                <div class="text-danger">
+                    {% for error in form.available_from.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.available_to.label(class="form-control-label") }}
+            {{ form.available_to(class="form-control", type="date") }}
+            {% if form.available_to.errors %}
+                <div class="text-danger">
+                    {% for error in form.available_to.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.image.label(class="form-control-label") }}
+            {{ form.image(class="form-control-file") }}
+            {% if form.image.errors %}
+                <div class="text-danger">
+                    {% for error in form.image.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <small class="form-text text-muted">Leave empty to keep current image</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Room</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

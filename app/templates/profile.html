@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <img src="{{ url_for('static', filename='images/' + (user.profile_image or 'default-user.jpg')) }}" class="profile-photo">
+
+        <h2 class="profile-name">{{ user.name|upper }}</h2>
+
+        <button id="editProfileBtn" class="btn-edit" onclick="toggleEdit()">✏️ Edit Profile</button>
+
+        <form method="POST" class="profile-form" id="profileForm">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                {{ form.name(class="form-control", readonly=true, id="nameField") }}
+                {% if form.name.errors %}
+                    <div class="error">{{ form.name.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ form.email(class="form-control", readonly=true, id="emailField") }}
+                {% if form.email.errors %}
+                    <div class="error">{{ form.email.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                {{ form.phone(class="form-control", readonly=true, id="phoneField") }}
+                {% if form.phone.errors %}
+                    <div class="error">{{ form.phone.errors[0] }}</div>
+                {% endif %}
+            </div>
+
+            <hr>
+
+            <div class="profile-item">
+                <label>Role:</label>
+                <div class="value">👤 {{ user.role|capitalize }}</div>
+            </div>
+
+            <div class="profile-item">
+                <label>Joined:</label>
+                <div class="value">📅 {{ user.created_at.strftime('%Y-%m-%d') }}</div>
+            </div>
+
+            <div class="form-buttons" id="formButtons" style="display: none;">
+                <button type="submit" class="btn-save">Save Changes</button>
+                <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancel</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="photo" required>
+            <button type="submit" class="btn-photo">Change Photo</button>
+        </form>
+
+    </div>
+</div>
+
+<style>
+.profile-container { display: flex; justify-content: center; margin-top: 40px; }
+
+.profile-card {
+    width: 90%; max-width: 450px;
+    background: white; padding: 30px 25px;
+    border-radius: 14px; text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.profile-photo {
+    width: 150px; height: 150px; border-radius: 50%;
+    object-fit: cover; border: 3px solid #ddd; margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 28px; font-weight: 800; margin-bottom: 15px;
+}
+
+.btn-edit {
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-edit:hover {
+    background: #0056b3;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 700;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+.form-control:read-only {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.profile-item { 
+    text-align: left; 
+    margin-bottom: 15px;
+}
+.profile-item label { 
+    font-weight: 700; 
+    font-size: 14px; 
+}
+.value { 
+    margin-top: 6px; 
+    font-size: 16px; 
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn-save {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1;
+}
+
+.btn-save:hover {
+    background: #1e7e34;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-cancel:hover {
+    background: #545b62;
+}
+
+.upload-form { 
+    margin-top: 20px; 
+    text-align: left;
+}
+
+.btn-photo {
+    padding: 8px 14px; 
+    background: #17a2b8; 
+    color: white;
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-photo:hover { 
+    background: #138496; 
+}
+
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+</style>
+
+<script>
+function toggleEdit() {
+    const nameField = document.getElementById('nameField');
+    const emailField = document.getElementById('emailField');
+    const phoneField = document.getElementById('phoneField');
+    const formButtons = document.getElementById('formButtons');
+    const editProfileBtn = document.getElementById('editProfileBtn');
+
+    nameField.readOnly = !nameField.readOnly;
+    emailField.readOnly = !emailField.readOnly;
+    phoneField.readOnly = !phoneField.readOnly;
+
+    
+    if (nameField.readOnly) {
+        
+        nameField.style.backgroundColor = '#f8f9fa';
+        emailField.style.backgroundColor = '#f8f9fa';
+        phoneField.style.backgroundColor = '#f8f9fa';
+        formButtons.style.display = 'none';
+        editProfileBtn.style.display = 'block';
+    } else {
+       
+        nameField.style.backgroundColor = '#ffffff';
+        emailField.style.backgroundColor = '#ffffff';
+        phoneField.style.backgroundColor = '#ffffff';
+        formButtons.style.display = 'flex';
+        editProfileBtn.style.display = 'none';
+        
+       
+        nameField.focus();
+    }
+}
+
+function cancelEdit() {
+    const nameField = document.getElementById('nameField');
+    const emailField = document.getElementById('emailField');
+    const phoneField = document.getElementById('phoneField');
+    const formButtons = document.getElementById('formButtons');
+    const editProfileBtn = document.getElementById('editProfileBtn');
+
+    // Reset to readonly state
+    nameField.readOnly = true;
+    emailField.readOnly = true;
+    phoneField.readOnly = true;
+
+    // Reset background colors
+    nameField.style.backgroundColor = '#f8f9fa';
+    emailField.style.backgroundColor = '#f8f9fa';
+    phoneField.style.backgroundColor = '#f8f9fa';
+
+    // Hide save buttons, show edit button
+    formButtons.style.display = 'none';
+    editProfileBtn.style.display = 'block';
+
+    // Reset form values (optional - you can remove this if you don't want to reset)
+    // This will reset any changes made but not saved
+    // document.getElementById('profileForm').reset();
+}
+</script>
+
+{% endblock %}

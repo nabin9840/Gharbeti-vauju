@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - RoomRent{% endblock %}
+
+{% block content %}
+<div class="about-us-container">
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="hero-divider"></div>
+        </div>
+    </section>
+
+    
+    <section class="about-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h2>Welcome to Room Rent Website </h2>
+                    <div class="content-divider"></div>
+                    <div class="paragraphs">
+
+                                
+                                <p>We understand the challenges people face while searching for rooms physically — visiting multiple places, wasting time, and facing uncertainty. That’s why we created <strong>Room Rental Website</strong>: a digital solution that allows users to <strong>search, post, and book rooms online from anywhere</strong>. Whether you’re a student, jobholder, or traveler, you can explore verified listings, contact owners directly, and secure your room within minutes.</p>
+
+                                <p>For <strong>room owners</strong>, our platform provides an easy way to showcase their properties to genuine seekers. Owners can list their rooms with photos, descriptions, and rent details, making it easier for interested users to find the perfect match without middlemen or extra hassle.</p>
+
+                                <p>Communication between owners and seekers is made seamless through our built-in <strong>messaging and booking system</strong>. Both parties can discuss details, schedule visits, and complete agreements securely through the website.</p>
+
+                                <h3> Our Goals</h3>
+                                <ul>
+                                <li>To create a <strong>trusted and transparent platform</strong> for room seekers and owners.</li>
+                                <li>To make <strong>room searching and posting easier, faster, and fully online</strong>.</li>
+                                <li>To <strong>reduce the physical effort</strong> of searching rooms manually.</li>
+                                <li>To ensure <strong>safe communication and secure bookings</strong> between users.</li>
+                                <li>To help <strong>students, professionals, and homeowners</strong> find and offer rooms conveniently.</li>
+                                </ul>
+
+                                <h3> Why We Built This Website</h3>
+                                <p>In Nepal, finding a suitable room can often be difficult and time-consuming. Many people have to travel from place to place just to find available rooms, while owners struggle to find genuine Customer. <strong>Room Rental Website</strong> was created to solve this problem — by connecting people through a simple, user-friendly online platform that saves time, ensures safety, and makes the room rental process smooth and efficient.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="values-section">
+        <div class="container">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Trust & Security</h3>
+                    <p>We prioritize the safety and security of all our users with verified profiles and and Rooms.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Community Focus</h3>
+                    <p>Building  positive relationships between House owners and renter.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Help and Support</h3>
+                    <p> We have best support system .You can follow us on various social media annd contact us through email,phone</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<style>
+    /* About Us Page Styles */
+    .about-us-container {
+        min-height: calc(100vh - 160px);
+        background-color: #f8fafc;
+    }
+
+    /* Hero Section */
+    .about-hero {
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+        text-align: center;
+    }
+
+    .about-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-divider {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        margin: 0 auto;
+        border-radius: 2px;
+    }
+
+    /* Main Content Section */
+    .about-content {
+        padding: 4rem 0;
+        background: white;
+    }
+
+    .content-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .content-divider {
+        width: 60px;
+        height: 2px;
+        background: #667eea;
+        margin-bottom: 2rem;
+        border-radius: 1px;
+    }
+
+    .paragraphs p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4a5568;
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+    .image-content {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .image-placeholder {
+        width: 100%;
+        max-width: 300px;
+        height: 400px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-placeholder i {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+
+    .image-placeholder span {
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    /* Values Section */
+    .values-section {
+        padding: 4rem 0;
+        background: #f8fafc;
+    }
+
+    .values-section h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: #2d3748;
+        margin-bottom: 3rem;
+        font-weight: 700;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .value-card {
+        background: white;
+        padding: 2.5rem 2rem;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .value-icon {
+        font-size: 2.5rem;
+        color: #667eea;
+        margin-bottom: 1.5rem;
+    }
+
+    .value-card h3 {
+        font-size: 1.3rem;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .value-card p {
+        color: #718096;
+        line-height: 1.6;
+    }
+</style>
+<script>
+    // Simple animation for value cards on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const valueCards = document.querySelectorAll('.value-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        valueCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    });
+</script>
+{% endblock %}

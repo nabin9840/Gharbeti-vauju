@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Review {{ room.title }} - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="review-page">
+    <div class="container">
+        <h1>Write a Review</h1>
+
+        <div class="room-summary">
+            <h3>{{ room.title }}</h3>
+            <p class="location">📍 {{ room.location }}</p>
+        </div>
+
+        <form method="POST" action="" class="review-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.rating.label }}
+                {{ form.rating(class="form-control", min="1", max="5") }}
+                {% if form.rating.errors %}
+                    <span class="error">{{ form.rating.errors[0] }}</span>
+                {% endif %}
+                <small class="form-text">Rate from 1 (Poor) to 5 (Excellent)</small>
+            </div>
+
+            <div class="form-group">
+                {{ form.comment.label }}
+                {{ form.comment(class="form-control", rows="5", placeholder="Share your experience with this room...") }}
+                {% if form.comment.errors %}
+                    <span class="error">{{ form.comment.errors[0] }}</span>
+                {% endif %}
+            </div>
+            <div class="action-buttons"></div>     
+                <button type="submit" class="btn-primary btn-medium ">Submit Review</button>
+                <a href="{{ url_for('room_details', room_id=room.id) }}" class="btn-primary btn-medium ">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

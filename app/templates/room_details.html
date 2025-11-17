@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}{{ room.title }} - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="room-details-page">
+    <div class="container">
+        <a href="{{ url_for('room_list') }}" class="back-link">← Back to Rooms</a>
+
+        <div class="room-details">
+            <div class="room-image-section">
+                <img src="{{ url_for('static', filename='images/' + (room.image_filename or 'default_room.jpg')) }}"
+                     alt="{{ room.title }}" class="main-image">
+            </div>
+
+            <div class="room-info-section">
+                <h1>{{ room.title }}</h1>
+                <p class="location">📍 {{ room.location }}</p>
+
+                <div class="price-section">
+                    <span class="price">Rs {{ room.rent_price }}/month</span>
+                    <span class="badge">{{ room.room_type }}</span>
+                </div>
+
+                {% if room.reviews %}
+                <div class="rating-section">
+                    <span class="rating">⭐ {{ "%.1f"|format(room.average_rating()) }}</span>
+                    <span class="review-count">({{ room.reviews|length }} reviews)</span>
+                </div>
+                {% endif %}
+
+                <div class="description-section">
+                    <h3>Description</h3>
+                    <p>{{ room.description }}</p>
+                </div>
+
+                <div class="availability-section">
+                    <h3>Availability</h3>
+                    <p><strong>Available from:</strong> {{ room.available_from.strftime('%d %B %Y') }}</p>
+                    {% if room.available_to %}
+                    <p><strong>Available until:</strong> {{ room.available_to.strftime('%d %B %Y') }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="owner-section">
+                    <p><strong>Listed by:</strong> {{ room.owner.name }}</p>
+                    <p><strong>Posted on:</strong> {{ room.created_at.strftime('%d %B %Y') }}</p>
+                </div>
+
+                {% if current_user.is_authenticated and current_user.role == 'viewer' %}
+                <div class="action-buttons">
+                    <a href="{{ url_for('book_room', room_id=room.id) }}" class="btn-primary btn-medium">Book Now</a>
+                    <a href="{{ url_for('add_review', room_id=room.id) }}" class="btn-primary btn-medium">Write a Review</a>
+                    <a href="{{ url_for('view_user_profile', user_id=room.owner.id) }}" class="btn-primary btn-medium">Owner Profile</a>
+                </div>
+                {% elif not current_user.is_authenticated %}
+                <div class="action-buttons">
+                    <a href="{{ url_for('login') }}" class="btn-primary btn-large">Login to Book</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2>Reviews</h2>
+            {% if reviews %}
+            <div class="reviews-list">
+                {% for review in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>{{ review.reviewer.name }}</strong>
+                        <span class="rating">{% for i in range(review.rating) %}⭐{% endfor %}</span>
+                    </div>
+                    <p class="review-comment">{{ review.comment }}</p>
+                    <small class="review-date">{{ review.created_at.strftime('%d %B %Y') }}</small>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-state">No reviews yet. Be the first to review!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

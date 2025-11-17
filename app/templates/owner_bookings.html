@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.container {
+    padding: 30px;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+.container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    animation: slideDown 0.6s ease;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table thead th {
+    background: #10cc9a;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    border: none;
+    font-size: 15px;
+}
+
+.table tbody tr {
+    background: #f8f9fa;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.table tbody tr:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.table tbody td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Room and Guest Name with buttons */
+.room-info, .guest-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-name, .guest-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.btn-view-room, .btn-view-profile {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-view-room {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 2px 5px rgba(102, 126, 234, 0.3);
+}
+
+.btn-view-room:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-view-profile {
+    background: linear-gradient(135deg, #93d1fb 0%, #57e0f5 100%);
+    color: white;
+    box-shadow: 0 2px 5px rgba(245, 87, 108, 0.3);
+}
+
+.btn-view-profile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(245, 87, 108, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Status badges */
+.badge-warning {
+    background: #ffc107;
+    padding: 6px 12px;
+    border-radius: 10px;
+    color: black;
+}
+
+.badge-success {
+    background: #28a745;
+    padding: 6px 12px;
+    border-radius: 10px;
+    color: white;
+}
+
+.badge-danger {
+    background: #dc3545;
+    padding: 6px 12px;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Action buttons */
+.btn-sm {
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: 0.25s;
+    margin: 2px;
+}
+
+.btn-success {
+    background: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background: #1f8a36;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #bb1f2c;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    margin-top: 25px;
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: 0.3s;
+    background: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #4e4e4e;
+    transform: translateY(-3px);
+}
+
+
+.alert-info {
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+    border: 1px solid #b8daff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .table-responsive {
+        font-size: 14px;
+    }
+    
+    .btn-view-room, .btn-view-profile {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+</style>
+
+<div class="container">
+    <h2>Booking Requests for Your Rooms</h2>
+    
+    {% if bookings %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Guest</th>
+                    <th>Check-in</th>
+                    <th>Check-out</th>
+                    <th>Days</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    
+                    <td>
+                        <div class="room-info">
+                            <span class="room-name">{{ booking.room.title }}</span>
+                            <a href="{{ url_for('room_details', room_id=booking.room.id) }}" 
+                               class="btn-view-room">
+                                 View Room
+                            </a>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="guest-info">
+                            <span class="guest-name">{{ booking.renter.name }}</span>
+                            <a href="{{ url_for('view_user_profile', user_id=booking.renter.id) }}" 
+                               class="btn-view-profile">
+                                👤 View Profile
+                            </a>
+                        </div>
+                    </td>
+
+                    <td>{{ booking.start_date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ booking.end_date.strftime('%Y-%m-%d') }}</td>
+
+                    <td>
+                        {% set days = (booking.end_date - booking.start_date).days %}
+                        {{ days }}
+                    </td>
+
+                    <td>Rs. {{ (days * (booking.room.rent_price / 30)) | int }}</td>
+
+                    <td>
+                        {% if booking.status == 'pending' %}
+                            <span class="badge badge-warning"> Pending</span>
+                        {% elif booking.status == 'confirmed' %}
+                            <span class="badge badge-success"> Approved</span>
+                        {% elif booking.status == 'rejected' %}
+                            <span class="badge badge-danger">Rejected</span>
+                        {% else %}
+                            <span class="badge badge-danger"> Cancelled</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if booking.status == 'pending' %}
+                            <a href="{{ url_for('approve_booking', booking_id=booking.id) }}" 
+                               class="btn btn-success btn-sm"> Approve</a>
+                            <a href="{{ url_for('reject_booking', booking_id=booking.id) }}" 
+                               class="btn btn-danger btn-sm"> Reject</a>
+                        {% else %}
+                            <span class="text-muted">No actions</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <h4>📭 No Booking Requests</h4>
+        <p>You don't have any booking requests for your rooms yet.</p>
+    </div>
+    {% endif %}
+
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+{% endblock %}

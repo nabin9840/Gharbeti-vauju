@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Help & Support - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <section class="help-support">
+        <h1>Help & Support</h1>
+        <p>
+            Welcome to the <strong>Room Rental System Help & Support</strong> page. We are here to assist you with any issues 
+            or questions regarding our platform.
+        </p>
+        <p>
+            <strong>How We Can Help:</strong>
+            <ul>
+                <li>Account issues: Registration, login problems, or password reset.</li>
+                <li>Booking assistance: Help with selecting rooms, confirming bookings, or cancellations.</li>
+                <li>Room listing support: Guidance for owners on adding or managing room listings.</li>
+                <li>Technical issues: Report website errors or unexpected behavior.</li>
+                <li>General inquiries: Any questions about services or policies.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>Contact Us:</strong>
+            <ul>
+                <li>Email: <a href="mailto:support@roomrentalsystem.com">support@roomrentalsystem.com</a></li>
+                <li>Phone: +977-XXXXXXXXXX</li>
+                <li>Or use the contact form on our <a href="{{ url_for('contact') }}">Contact Us</a> page</li>
+            </ul>
+        </p>
+        <p>
+            Our support team strives to respond within 24–48 hours. Thank you for using Room Rental System!
+        </p>
+    </section>
+</div>
+{% endblock %}

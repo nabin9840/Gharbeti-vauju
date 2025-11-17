@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Welcome, {{ user.name }}</h1>
+    
+    {% if role == 'owner' %}
+        <h2>My Listed Rooms</h2>
+
+        {% if rooms %}
+            <div class="room-list">
+                {% for room in rooms %}
+                <div class="room-card">
+
+                     <img src="{{ url_for('static', filename='images/' + room.image_filename) }}" alt="{{ room.title }}"
+                         alt="{{ room.title }}"
+                         class="room-image">
+
+                    <h3>{{ room.title }}</h3>
+                    <p>Location: {{ room.location }}</p>
+                    <p>Price: Rs{{ room.rent_price }}</p>
+                    <p>Status: {{ room.status }}</p>
+
+                    <div class="room-actions">
+                        <a href="{{ url_for('edit_room', room_id=room.id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url_for('delete_room', room_id=room.id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No rooms listed yet.</p>
+            <a href="{{ url_for('add_room') }}" class="btn btn-primary">Add New Room</a>
+        {% endif %}
+    
+
+    {% elif role == 'admin' %}
+        <h2>All Rooms</h2>
+
+        {% if rooms %}
+            <div class="room-list">
+                {% for room in rooms %}
+                <div class="room-card">
+
+                    
+                    <img src="{{ url_for('static', filename='uploads/' ~ room.image_filename) }}"
+                         alt="{{ room.title }}"
+                         class="room-image">
+
+                    <h3>{{ room.title }}</h3>
+                    <p>Owner: {{ room.owner.name }}</p>
+                    <p>Status: {{ room.status }}</p>
+
+                    <div class="room-actions">
+                        <a href="{{ url_for('approve_room', room_id=room.id) }}" class="btn btn-success">Approve</a>
+                        <a href="{{ url_for('delete_room', room_id=room.id) }}" class="btn btn-danger">Delete</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No rooms in the system.</p>
+        {% endif %}
+    
+
+    {% else %}  <!-- viewer -->
+        <!-- <h2>My Bookings</h2>
+       {% if bookings %}
+            <div class="room-list">
+                {% for booking in bookings %}
+                <div class="room-card">
+
+
+                    <h3>{{ booking.title }}</h3>
+                    <p>Location: {{ booking.location }}</p>
+                    <p>Price: Rs{{ booking.rent_price }}</p>
+                    <p>Status: {{ booking.status }}</p>
+
+                    
+
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No booking yet.</p>
+         <a href="{{ url_for('book_room', room_id=room.id) }}" class="btn-primary btn-large">Book Now</a>
+        {% endif %}
+    
+        <a href="{{ url_for('room_list') }}" class="btn btn-primary">Browse Rooms</a> -->
+    {% endif %}
+</div>
+{% endblock %}

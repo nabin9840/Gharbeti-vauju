@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Book {{ room.title }} - Room Rental System{% endblock %}
+
+{% block content %}
+<div class="booking-page">
+    <div class="container">
+        <h1>Book Room</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="booking-container">
+            <div class="room-summary">
+                <h3>{{ room.title }}</h3>
+                <p class="location"> {{ room.location }}</p>
+                <img src="{{ url_for('static', filename='images/' + room.image_filename) }}"
+                     alt="{{ room.title }}" class="summary-image">
+                <p class="price"> Rs {{ room.rent_price }}/month</p>
+                
+                
+                {% if existing_bookings %}
+                <div class="existing-bookings-info">
+                    <h4>📅 Already Booked Dates:</h4>
+                    <div class="bookings-list">
+                        {% for booking in existing_bookings %}
+                        <div class="booking-slot">
+                            <span class="dates">{{ booking.start_date.strftime('%Y-%m-%d') }} to {{ booking.end_date.strftime('%Y-%m-%d') }}</span>
+                            <span class="status-badge {{ booking.status }}">
+                                {{ booking.status|title }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="booking-form-section">
+                <h2>Select Dates</h2>
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group">
+                        {{ form.start_date.label }}
+                        {{ form.start_date(class="form-control", type="date", min=min_date) }}
+                        {% if form.start_date.errors %}
+                            <div class="error-message">
+                                {% for error in form.start_date.errors %}
+                                    <span class="error"> {{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.end_date.label }}
+                        {{ form.end_date(class="form-control", type="date", min=min_date) }}
+                        {% if form.end_date.errors %}
+                            <div class="error-message">
+                                {% for error in form.end_date.errors %}
+                                    <span class="error"> {{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>Note:</strong> The total price will be calculated based on the number of days selected.</p>
+                        <p>Monthly rent: Rs {{ room.rent_price }}</p>
+                        
+                        
+                        <div id="price-preview" class="price-preview" data-monthly-rent="{{ room.rent_price }}">
+                            <p><strong>Estimated Total: <span id="total-amount">Rs 0</span></strong></p>
+                            <p><small id="days-count">0 days</small></p>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="btn-primary btn-block">Confirm Booking</button>
+                        <a href="{{ url_for('room_details', room_id=room.id) }}" class="btn-secondary btn-block">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.alert {
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.existing-bookings-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+}
+
+.existing-bookings-info h4 {
+    margin: 0 0 10px 0;
+    color: #856404;
+}
+
+.booking-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 5px 0;
+    background: white;
+    border-radius: 4px;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-badge.confirmed {
+    background: #28a745;
+    color: white;
+}
+
+.status-badge.pending {
+    background: #ffc107;
+    color: black;
+}
+
+.error-message {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.error {
+    color: #721c24;
+    font-size: 14px;
+}
+
+.price-preview {
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+</style>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const startDateInput = document.querySelector('input[name="start_date"]');
+    const endDateInput = document.querySelector('input[name="end_date"]');
+    const totalAmountSpan = document.getElementById('total-amount');
+    const daysCountSpan = document.getElementById('days-count');
+    
+   
+    const pricePreview = document.getElementById('price-preview');
+    const monthlyRent = parseFloat(pricePreview.getAttribute('data-monthly-rent'));
+    
+    function calculatePrice() {
+        if (startDateInput.value && endDateInput.value) {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            
+            if (endDate > startDate) {
+                const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                const total = Math.round(days * (monthlyRent / 30));
+                
+                daysCountSpan.textContent = days + ' days';
+                totalAmountSpan.textContent = 'Rs ' + total;
+            } else {
+                daysCountSpan.textContent = '0 days';
+                totalAmountSpan.textContent = 'Rs 0';
+            }
+        } else {
+            daysCountSpan.textContent = '0 days';
+            totalAmountSpan.textContent = 'Rs 0';
+        }
+    }
+    
+    startDateInput.addEventListener('change', calculatePrice);
+    endDateInput.addEventListener('change', calculatePrice);
+    
+    
+    calculatePrice();
+});
+</script>
+{% endblock %}

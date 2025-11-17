@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="user-profile-container">
+    <div class="user-card">
+        <div class="user-card-header">
+            👤 User Profile
+        </div>
+        <div class="user-card-body">
+            <img src="{{ url_for('static', filename='images/' + (user.profile_image or 'default-user.jpg')) }}" alt="Profile Image">
+            <h3>{{ user.name }}</h3>
+            <p class="text-muted">{{ user.role|capitalize }}</p>
+
+            <div class="user-info">
+                <p><strong> Email:</strong> {{ user.email }}</p>
+                <p><strong> Phone:</strong> {{ user.phone if user.phone else 'Not provided' }}</p>
+                <p><strong> Member since:</strong> {{ user.created_at.strftime('%Y-%m-%d') }}</p>
+            </div>
+
+            {% if user==viewer %}
+            <a href="{{ url_for('owner_bookings') }}" class="btn-back-profile">Back to Bookings</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

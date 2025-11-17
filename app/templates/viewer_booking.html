@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.container {
+    padding: 3px;
+    animation: fadeIn 0.7s ease-in-out;
+    max-width: 2000px;
+}
+
+.container h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    animation: slideDown 0.6s ease;
+    background: linear-gradient(135deg, #eff1f9 0%, #f0eef2 100%);
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    text-align: center;
+}
+
+
+.booking-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.booking-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.booking-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+}
+
+.booking-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.booking-header {
+    display: flex;
+    justify-content: between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.room-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    flex: 1;
+}
+
+.room-location {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.booking-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.booking-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ecf0f1;
+}
+
+
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-pending {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+    color: #d63031;
+}
+
+.status-confirmed {
+    background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+    color: white;
+}
+
+.status-cancelled {
+    background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+    color: #636e72;
+}
+
+
+.btn-view-room {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-view-room:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+
+.price-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #27ae60;
+    text-shadow: 0 2px 4px rgba(39, 174, 96, 0.2);
+}
+
+
+.no-bookings {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.no-bookings h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.no-bookings p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+.btn-explore {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-explore:hover {
+    background: rgba(255,255,255,0.3);
+    color: white;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 768px) {
+    .booking-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-footer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .btn-view-room {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .container h2 {
+        font-size: 2rem;
+    }
+}
+
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.booking-card:nth-child(odd) {
+    animation: float 6s ease-in-out infinite;
+}
+
+.booking-card:nth-child(even) {
+    animation: float 6s ease-in-out infinite 1s;
+}
+</style>
+
+<div class="container">
+    <h2> My Bookings</h2>
+    
+    {% if bookings %}
+    <div class="booking-cards">
+        {% for booking in bookings %}
+        <div class="booking-card">
+            <div class="booking-header">
+                <div style="flex: 1;">
+                    <div class="room-title">{{ booking.room.title }}</div>
+                    <div class="room-location">📍 {{ booking.room.location }}</div>
+                </div>
+            </div>
+            
+            <div class="booking-details">
+                <div class="detail-item">
+                    <span class="detail-label">👤 Guest</span>
+                    <span class="detail-value">{{ booking.renter.name }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📅 Check-in</span>
+                    <span class="detail-value">{{ booking.start_date.strftime('%b %d, %Y') }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">📅 Check-out</span>
+                    <span class="detail-value">{{ booking.end_date.strftime('%b %d, %Y') }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label"> Duration</span>
+                    <span class="detail-value">
+                        {% set days = (booking.end_date - booking.start_date).days %}
+                        {{ days }} day{% if days != 1 %}s{% endif %}
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Daily Rate</span>
+                    <span class="detail-value">Rs. {{ "%.2f"|format(booking.room.rent_price / 30) }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Total Amount</span>
+                    <span class="detail-value price-amount">
+                        Rs. {{ (days * (booking.room.rent_price / 30)) | int }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="booking-footer">
+                <span class="status-badge status-{{ booking.status }}">
+                    {% if booking.status == 'pending' %}
+                        ⏳ Pending Approval
+                    {% elif booking.status == 'confirmed' %}
+                         Confirmed
+                    {% else %}
+                        Cancelled
+                    {% endif %}
+                </span>
+                
+                <a href="{{ url_for('view_room', room_id=booking.room.id) }}" 
+                   class="btn-view-room">
+                     View Room Details
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-bookings">
+        <h3>📭 No Bookings Yet</h3>
+        <p>You haven't made any room bookings yet. Start exploring available rooms!</p>
+        <a href="{{ url_for('room_list') }}" class="btn-explore">
+            🚀 Explore Rooms
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}"
